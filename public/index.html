@@ -31,6 +31,8 @@
         <h2>Your Cart</h2>
         <ul id="cartItems"></ul>
         <p><span id="totalAmount">0</span></p>
+        <!-- Clear Cart button -->
+        <button id="clearCartButton" class="centered-button">Clear Cart</button>
     </div>
 
     <script>
@@ -124,6 +126,13 @@
                 }, 2000);
             } else {
                 alert('Error adding product to cart');
+            }
+        });
+        const clearCartButton = document.getElementById('clearCartButton');
+        clearCartButton.addEventListener('click', async () => {
+            // Handle clear cart button click
+            if (confirm('Are you sure you want to clear your cart?')) {
+                await clearCart();
             }
         });
 

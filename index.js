@@ -16,15 +16,23 @@ mongoose.connect(MONGODB_URI, {
   console.log('MongoDB connected');
   Order.find({})
     .then(orders => {
-      console.log('orders:', orders);
+      console.log('Orders:');
+      orders.forEach(order => {
+        console.log('Order ID:', order.orderId);
+        console.log('Customer Care Number:', order.customerCareNumber);
+        console.log('Items:');
+        order.items.forEach(item => {
+          console.log('Name:', item.name);
+          console.log('Price:', item.price);
+          console.log('Quantity:', item.quantity);
+        });
+        console.log('-----------------------');
+      });
     })
     .catch(err => {
       console.error('Error fetching orders:', err);
     });
 })
-.catch(err => {
-  console.error('Error connecting to MongoDB:', err);
-});
 
 // Define product schema and model
 const productSchema = new mongoose.Schema({
